@@ -1,0 +1,24 @@
+{
+  "name": "master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "grunt": "grunt",
+    "start": "node index.js"
+  },
+  "author": "Alex Vargas Benamburg (alex at vbalex.com)",
+  "license": "CC-BY-SA",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.3",
+    "grunt-tslint": "^3.3.0",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.45"
+  }
+}
