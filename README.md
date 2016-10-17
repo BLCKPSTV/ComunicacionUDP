@@ -1,6 +1,4 @@
-# Espacio-Tiempo
-Sound kinetic Sculptures connected with ESP8266 to interact with dancers and Bid DATA
-
+# Comunicacion UDP
 ##Carpetas:
   1. ESP
     Esta carpeta contiene el codigo de **Arduino IDE** para los **ESP8266**
