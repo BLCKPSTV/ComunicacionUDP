@@ -104,20 +104,23 @@ class Main {
       }
       break;
      case "G":
-      for(let i in this.dispositivos){
-        let ip = i.split(",");
-        let data: Uint8Array = new Uint8Array(7);
-        data[0] = "I".charCodeAt(0);
-        data[1] = parseInt( ip[0] );
-        data[2] = parseInt( ip[1] );
-        data[3] = parseInt( ip[2] );
-        data[4] = parseInt( ip[3] );
-        data[5] = this.dispositivos[i].actuadores;
-        data[6] = this.dispositivos[i].sensores;
+      for (let i in this.dispositivos) {
+        if (this.dispositivos[i]) {
+          let ip = i.split(".");
+          console.log(ip);
+          let data: Uint8Array = new Uint8Array(7);
+          data[0] = "I".charCodeAt(0);
+          data[1] = parseInt( ip[0] );
+          data[2] = parseInt( ip[1] );
+          data[3] = parseInt( ip[2] );
+          data[4] = parseInt( ip[3] );
+          data[5] = this.dispositivos[i].actuadores;
+          data[6] = this.dispositivos[i].sensores;
 
-        (function(data: Buffer, dest: any) {
-            send(data, dest);
-        })(new Buffer(data), info.address);
+          (function(data: Buffer, dest: any) {
+              send(data, dest);
+          })(new Buffer(data), info.address);
+        }
       }
 
       break;
