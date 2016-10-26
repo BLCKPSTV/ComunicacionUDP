@@ -1,0 +1,1 @@
+"/home/alex/Proyectos/LaJauria/Master/typings/index.d.ts" "/home/alex/Proyectos/LaJauria/Master/src/app.ts" --removeComments --noLib --target ES6 --module commonjs --outDir ./bin/

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "grunt": "grunt",
-    "start": "node index.js"
+    "start": "grunt && node index.js"
   },
   "author": "Alex Vargas Benamburg (alex at vbalex.com)",
   "license": "CC-BY-SA",

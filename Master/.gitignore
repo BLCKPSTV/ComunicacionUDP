@@ -2,3 +2,4 @@ bin/
 .tscache/
 node_modules/
 .baseDir.js
+*.log
