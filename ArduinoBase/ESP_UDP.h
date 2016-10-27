@@ -3,9 +3,9 @@
 
 #include "SoftwareSerial.h"
 
-SoftwareSerial ss(7,8);
+//SoftwareSerial ss(14,17);
 
-#define COMUNICACION ss
+#define COMUNICACION Serial1
 
 uint8_t N_ACTUADORES = 0;
 uint8_t N_SENSORES = 0;
@@ -20,7 +20,6 @@ void waitOKESP(){
   while(!r){
     if(COMUNICACION.available()){
       char e = COMUNICACION.read();
-      Serial.println(e);
       if(e=='Y'){
         r = true;
       }
@@ -29,24 +28,19 @@ void waitOKESP(){
 }
 
 void flushESP(){
-  while(Serial.available()){
-    Serial.read();
+  while(COMUNICACION.available()){
+    COMUNICACION.read();
     delay(1);
   }
 }
 
 void initESP(uint8_t acts,uint8_t sens){
+  COMUNICACION.begin(19200);
   N_ACTUADORES = acts;
   N_SENSORES = sens;
   actuadores = new uint8_t[N_ACTUADORES*2];
   sensores = new uint8_t[N_SENSORES*2];
-  
-  delay(500);
-  COMUNICACION.begin(19200);
-  
   waitOKESP();
-  
-  Serial.println("OK");
   COMUNICACION.write(N_ACTUADORES*2);
   COMUNICACION.write(N_SENSORES*2);
   waitOKESP();
@@ -58,7 +52,8 @@ void updateESP(){
     COMUNICACION.write('W');
     while(!COMUNICACION.available());
     if(COMUNICACION.read()=='W'){
-      for(int i=0;i<N_SENSORES;++i){
+      setUpdate = false;
+      for(int i=0;i<N_SENSORES*2;++i){
         COMUNICACION.write(sensores[i]);
       }
     }else{
@@ -75,7 +70,6 @@ void updateESP(){
       delay(2);
     }
   }else{
-    Serial.println("WRONG");
     flushESP();
   }
   delay(25);
